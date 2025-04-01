@@ -1,9 +1,24 @@
+import { useState, useEffect } from "react";
+
 export default function Home() {
+    const [featuredPosts, setFeaturedPosts] = useState([]);
+
+    const base_api_url = "http://localhost:3006";
+    const posts_endpoint = "/api/v1/posts";
+    const img_endpoint = "/img/posts/";
+
+    useEffect(() => {
+        fetch(base_api_url + posts_endpoint)
+            .then((res) => res.json())
+            .then((data) => {
+                const featured = data.filter((post) => post.featured === true); // Filtra tutti i post in evidenza
+                setFeaturedPosts(featured);
+            });
+    }, []);
 
     return (
         <>
             <main>
-
                 <section>
                     <div className="p-5 mb-4 bg-light rounded-3">
                         <div className="container-fluid py-5">
@@ -20,20 +35,34 @@ export default function Home() {
                 </section>
 
                 <div className="container">
-
-                    <section className="py-5">
-                        <div className="container">
-                            <h2 className="mb-4">In Evidenza</h2>
-                            <div className="card">
-                                <img src="featured-image.jpg" className="card-img-top" alt="Post in evidenza" />
-                                <div className="card-body">
-                                    <h5 className="card-title">Titolo del Post in Evidenza</h5>
-                                    <p className="card-text">Un breve estratto del post in evidenza...</p>
-                                    <a href="/posts/featured-post" className="btn btn-primary">Leggi di più</a>
+                    {featuredPosts.length > 0 && (
+                        <section className="py-5">
+                            <div className="container">
+                                <h2 className="mb-4">In Evidenza</h2>
+                                <div className="row">
+                                    {featuredPosts.map((post) => (
+                                        <div className="col-md-6 mb-4" key={post.slug}>
+                                            <div className="card" style={{ maxWidth: "100%" }}>
+                                                <img
+                                                    src={base_api_url + img_endpoint + post.image}
+                                                    className="card-img-top"
+                                                    alt={post.title}
+                                                    style={{ maxHeight: "300px", objectFit: "cover" }}
+                                                />
+                                                <div className="card-body">
+                                                    <h5 className="card-title">{post.title}</h5>
+                                                    <p className="card-text">{post.description}</p>
+                                                    <a href={`/posts/${post.slug}`} className="btn btn-primary">
+                                                        Leggi di più
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
-                        </div>
-                    </section>
+                        </section>
+                    )}
 
                     <section className="bg-light py-5">
                         <div className="container">
@@ -56,5 +85,5 @@ export default function Home() {
                 </div>
             </main>
         </>
-    )
+    );
 }
