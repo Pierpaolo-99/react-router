@@ -43,7 +43,7 @@ export default function Chisiamo() {
                         Vuoi far parte della nostra community? Seguici sui social media o contattaci per collaborazioni e suggerimenti.
                         Siamo sempre aperti a nuove idee e feedback!
                     </p>
-                    <a href="/contacts" className="btn btn-primary">Contattaci</a>
+                    <a href="/Contacts" className="btn btn-primary">Contattaci</a>
                 </div>
             </section>
         </>

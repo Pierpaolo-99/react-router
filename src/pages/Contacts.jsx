@@ -1,5 +1,6 @@
 export default function Contacts() {
     return (
+
         <section className="py-5">
             <div className="container">
                 <h1 className="mb-4">Contattaci</h1>
