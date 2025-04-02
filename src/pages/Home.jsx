@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
 export default function Home() {
     const [featuredPosts, setFeaturedPosts] = useState([]);
@@ -52,9 +53,9 @@ export default function Home() {
                                                 <div className="card-body">
                                                     <h5 className="card-title">{post.title}</h5>
                                                     <p className="card-text">{post.description}</p>
-                                                    <a href={`/posts/${post.slug}`} className="btn btn-primary">
+                                                    <NavLink to={`/posts/${post.slug}`} className="btn btn-primary">
                                                         Leggi di più
-                                                    </a>
+                                                    </NavLink>
                                                 </div>
                                             </div>
                                         </div>
