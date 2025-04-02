@@ -64,7 +64,7 @@ export default function Post() {
                     src={'http://localhost:3006/img/posts/' + post.image}
                     className="card-img-left"
                     alt={post.title}
-                    style={{ width: "50%", objectFit: "cover" }}
+                    style={{ width: "600px", height: "400px", objectFit: "cover" }}
                 />
                 <div className="card-body">
                     <h5 className="card-title">{post.title}</h5>
