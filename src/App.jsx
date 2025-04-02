@@ -21,7 +21,7 @@ export default function App() {
             <Route path="/Posts" Component={Posts} />
             <Route path="/Posts/:slug" Component={Post} />
             <Route path="/Contacts" Component={Contacts} />
-            <Route path="/*" Component={NotFound} />
+            <Route path="*" Component={NotFound} />
           </Route>
         </Routes>
 

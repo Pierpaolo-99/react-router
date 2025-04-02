@@ -1,21 +1,32 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import NotFound from "./NotFound";
 
 export default function Post() {
 
-    const [post, setPost] = useState(null)
+    const [post, setPost] = useState(null);
     const [posts, setPosts] = useState([]);
+    const [notFound, setNotFound] = useState(false);
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
-    const { slug } = useParams()
+    const { slug } = useParams();
     console.log(slug);
 
     useEffect(() => {
         fetch(`http://localhost:3006/api/v1/posts/${slug}`)
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) {
+                    setNotFound(true);
+                    return null;
+                }
+                return res.json();
+            })
             .then(data => {
-                setPost(data);
+                if (data) {
+                    setPost(data);
+                    setNotFound(false);
+                }
             });
 
         fetch(`http://localhost:3006/api/v1/posts`)
@@ -43,6 +54,10 @@ export default function Post() {
             navigate(`/posts/${previousSlug}`);
         }
     };
+
+    if (notFound) {
+        return <NotFound />;
+    }
 
     if (!post) {
         return <p>Loading...</p>;
