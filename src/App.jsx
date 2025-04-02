@@ -4,6 +4,7 @@ import DefaultLayout from "./layout/DefaultLayout"
 import Home from "./pages/Home"
 import Chisiamo from "./pages/Chisiamo"
 import Posts from "./pages/Posts"
+import Post from "./pages/Post"
 import Contacts from "./pages/Contacts"
 
 export default function App() {
@@ -17,6 +18,7 @@ export default function App() {
             <Route path="/" Component={Home} />
             <Route path="/Chisiamo" Component={Chisiamo} />
             <Route path="/Posts" Component={Posts} />
+            <Route path="/Posts/:slug" Component={Post} />
             <Route path="/Contacts" Component={Contacts} />
           </Route>
         </Routes>
