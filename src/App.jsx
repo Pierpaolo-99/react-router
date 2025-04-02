@@ -6,6 +6,7 @@ import Chisiamo from "./pages/Chisiamo"
 import Posts from "./pages/Posts"
 import Post from "./pages/Post"
 import Contacts from "./pages/Contacts"
+import NotFound from "./pages/NotFound"
 
 export default function App() {
 
@@ -20,6 +21,7 @@ export default function App() {
             <Route path="/Posts" Component={Posts} />
             <Route path="/Posts/:slug" Component={Post} />
             <Route path="/Contacts" Component={Contacts} />
+            <Route path="/*" Component={NotFound} />
           </Route>
         </Routes>
 
